@@ -1,0 +1,44 @@
+#! /bin/bash
+
+
+if [ $# -eq 0 ]
+then
+  echo "Need a client name"
+  exit 1
+fi
+
+if [ ! -e /wg/.ready ]
+then
+  echo "No, not yet. I am not ready.. please try again in a minute or two.."
+  exit 1
+fi
+
+client=$1
+if [ -e /wg/clients/${client} ]
+then
+  echo "Client ${client} already exists"
+  exit 1
+fi
+
+client_ip=$(cat /wg/next_client)
+((client_ip++))
+echo ${client_ip} > /wg/next_client
+
+cd /wg/clients
+wg genkey | tee ${client}_private_key | wg pubkey > ${client}_public_key
+
+client_pvtkey=$(cat /wg/clients/${client}_private_key)
+client_pubkey=$(cat /wg/clients/${client}_public_key)
+server_pubkey=$(cat /wg/server_public_key)
+server_ip=$(curl -s icanhazip.com)
+
+
+wg set wg0  peer ${client_pubkey} allowed-ips 10.200.200.${client_ip}
+
+echo "Client added successfully, using the following client configuration file to connect to the server:"
+echo "#######################################################"
+sed -e "s/CIP/${client_ip}/g" \
+    -e "s-CLIENT_PVTKEY-${client_pvtkey}-g" \
+    -e "s-SERVER_PUBKEY-${server_pubkey}-g" \
+    -e "s-SERVER_IP-${server_ip}-g" /wg/wg0-client.conf.tpl
+echo "#######################################################"
