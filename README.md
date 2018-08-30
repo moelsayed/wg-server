@@ -23,4 +23,4 @@ docker run -d --name wg-server \
 docker exec wg-server add_client <client name>
 ```
 
-That's it! Using the generated configuration to run connect to the server!
+That's it! Use the generated configuration to run connect to the server!
