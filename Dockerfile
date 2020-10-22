@@ -6,8 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y \
     libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libfakeroot libgcc-5-dev \
     libgomp1 libisl15 libitm1 liblsan0 libmpc3 libmpx0 libquadmath0 \
     libtsan0 libubsan0 linux-libc-dev make manpages manpages-dev menu patch \
-    apt-transport-https software-properties-common iptables iproute2 curl cowsay \
-    && DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:wireguard/wireguard
+    apt-transport-https software-properties-common iptables iproute2 curl cowsay
 
 
 RUN mkdir -p /wg/clients
