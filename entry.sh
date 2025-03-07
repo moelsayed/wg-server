@@ -4,7 +4,7 @@
 rm -rf /wg/.ready
 # Install. We need to do this becasue it depends on the host kernel version.
 DEBIAN_FRONTEND=noninteractive apt-get update -y
-DEBIAN_FRONTEND=noninteractive apt-get -yy -q install wireguard-dkms wireguard-tools linux-headers-$(uname -r)
+DEBIAN_FRONTEND=noninteractive apt-get -yy -q install wireguard-dkms wireguard-tools 
 
 
 # generate server keys

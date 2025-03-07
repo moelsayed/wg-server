@@ -1,7 +1,6 @@
 [Interface]
 Address = 10.200.200.CIP/32
 PrivateKey = CLIENT_PVTKEY
-DNS = 1.0.0.1
 
 [Peer]
 PublicKey = SERVER_PUBKEY

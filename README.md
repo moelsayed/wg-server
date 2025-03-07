@@ -18,7 +18,7 @@
 docker run -d --name wg-server \
 --sysctl="net.ipv4.ip_forward=1" \
 --cap-add NET_ADMIN --cap-add SYS_MODULE \
--v /lib/modules/:/lib/modules/ -p 51820:51820/udp melsayed/wg-server:18.04
+-v /lib/modules/:/lib/modules/ -p 51833:51833/udp melsayed/wg-server:18.04
 ```
 - Wait for a couple of minutes until the kernel module is deployed.
 - Run the following command on your linux server, to get client config:
